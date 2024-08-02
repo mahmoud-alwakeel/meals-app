@@ -3,13 +3,55 @@ import 'package:meals_app/models/category_model.dart';
 
 class CategoryDummyData {
   final List<CategoryModel> avaialableCategories = [
-    CategoryModel(id: '1', title: 'italian', color: Colors.purple,),
-    CategoryModel(id: '2', title: 'german', color: Colors.yellow,),
-    CategoryModel(id: '3', title: 'quick & easy', color: Colors.blue,),
-    CategoryModel(id: '4', title: 'breakfast', color: Colors.green,),
-    CategoryModel(id: '5', title: 'summer', color: Colors.grey,),
-    CategoryModel(id: '6', title: 'exotic', color: Colors.redAccent,),
-    CategoryModel(id: '7', title: 'asian', color: Colors.blueGrey,),
-    CategoryModel(id: '8', title: 'french', color: Colors.black38,),
+    CategoryModel(
+      id: 'c1',
+      title: 'Italian',
+      color: Colors.purple,
+    ),
+    CategoryModel(
+      id: 'c2',
+      title: 'Quick & Easy',
+      color: Colors.red,
+    ),
+    CategoryModel(
+      id: 'c3',
+      title: 'Hamburgers',
+      color: Colors.orange,
+    ),
+    CategoryModel(
+      id: 'c4',
+      title: 'German',
+      color: Colors.amber,
+    ),
+    CategoryModel(
+      id: 'c5',
+      title: 'Light & Lovely',
+      color: Colors.blue,
+    ),
+    CategoryModel(
+      id: 'c6',
+      title: 'Exotic',
+      color: Colors.green,
+    ),
+    CategoryModel(
+      id: 'c7',
+      title: 'Breakfast',
+      color: Colors.lightBlue,
+    ),
+    CategoryModel(
+      id: 'c8',
+      title: 'Asian',
+      color: Colors.lightGreen,
+    ),
+    CategoryModel(
+      id: 'c9',
+      title: 'French',
+      color: Colors.pink,
+    ),
+    CategoryModel(
+      id: 'c10',
+      title: 'Summer',
+      color: Colors.teal,
+    ),
   ];
 }
