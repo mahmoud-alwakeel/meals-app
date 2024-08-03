@@ -50,7 +50,7 @@ class CategoriesScreen extends StatelessWidget {
               onCategorySelected: () {
                 _selectCategory(context, category);
               },
-            )
+            ),
           // categoryDummyData.avaialableCategories.map((category) => CategoryGridItem(category: category)).toList();
         ],
       ),

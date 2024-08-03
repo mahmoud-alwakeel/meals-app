@@ -22,11 +22,7 @@ class MealsScreen extends StatelessWidget {
           ? ListView.builder(
               itemCount: meals.length,
               itemBuilder: (context, index) {
-                return
-                    // Text(
-                    //   meals[index].title,
-                    // );
-                    MealItem(
+                return MealItem(
                   meal: meals[index],
                 );
               },
