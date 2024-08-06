@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal_model.dart';
-import 'package:meals_app/screens/meal_details_screen.dart';
 import 'package:meals_app/widgets/meal_trait_item.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -8,9 +7,11 @@ class MealItem extends StatelessWidget {
   const MealItem({
     super.key,
     required this.meal,
+    required this.onSelectMeal,
   });
 
   final MealModel meal;
+  final void Function(MealModel mealModel) onSelectMeal;
 
   String get complexity {
     return meal.complexity.name[0].toUpperCase() +
@@ -22,18 +23,17 @@ class MealItem extends StatelessWidget {
         meal.affordability.name.substring(1);
   }
 
-  void _selectMeal(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) {
-          return MealDetailsScreen(
-            title: meal.title,
-            meal: meal,
-          );
-        },
-      ),
-    );
-  }
+  // void _selectMeal(BuildContext context) {
+  //   Navigator.of(context).push(
+  //     MaterialPageRoute(
+  //       builder: (context) {
+  //         return MealDetailsScreen(
+  //           meal: meal,
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +47,8 @@ class MealItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 10,
       child: InkWell(
-        onTap: () {
-          _selectMeal(context);
+        onTap: (){
+          onSelectMeal(meal);
         },
         child: Stack(
           children: [
