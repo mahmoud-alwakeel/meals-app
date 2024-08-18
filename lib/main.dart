@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meals_app/screens/tabs_screen.dart';
 
 void main() {
-  runApp(const MealsApp());
+  runApp(
+    const ProviderScope(
+      child: MealsApp(),
+    ),
+  );
 }
 
 final theme = ThemeData(
@@ -21,7 +26,7 @@ class MealsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: theme ,
+      theme: theme,
       home: TabsScreen(),
     );
   }
