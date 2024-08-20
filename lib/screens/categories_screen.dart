@@ -8,10 +8,8 @@ import 'package:meals_app/widgets/category_grid_item.dart';
 class CategoriesScreen extends StatelessWidget {
   CategoriesScreen({
     super.key,
-
     required this.avaialbleMeals,
   });
-
 
   final List<MealModel> avaialbleMeals;
 
@@ -27,7 +25,6 @@ class CategoriesScreen extends StatelessWidget {
           return MealsScreen(
             title: category.title,
             meals: filteredMeals,
-
           );
         },
       ),
