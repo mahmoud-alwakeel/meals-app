@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals_app/data/meals_dummy_data.dart';
-import 'package:meals_app/models/meal_model.dart';
+import 'package:meals_app/providers/favorites_provider.dart';
 import 'package:meals_app/providers/meals_provider.dart';
 import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/filters_screen.dart';
@@ -25,7 +25,6 @@ class TabsScreen extends ConsumerStatefulWidget {
 class _TabsScreenState extends ConsumerState<TabsScreen> {
   final MealsDummyData mealsDummyData = MealsDummyData();
   int selectedIndex = 0;
-  final List<MealModel> favMealsList = [];
   Map<Filters, bool> _selectedFilters = kInitialFilters;
   void _selectScreen(int index) {
     setState(() {
@@ -33,31 +32,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     });
   }
 
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-        ),
-      ),
-    );
-  }
-
-  void _toggleFavoriteMealStatus(MealModel meal) {
-    final isExisting = favMealsList.contains(meal);
-    if (isExisting) {
-      setState(() {
-        favMealsList.remove(meal);
-        _showSnackBar('Meal removed from favorites');
-      });
-    } else {
-      setState(() {
-        favMealsList.add(meal);
-        _showSnackBar('Meal added to Favorites');
-      });
-    }
-  }
+  
 
   void _setScreen(String identifier) async {
     if (identifier == "filters") {
@@ -94,14 +69,13 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     }).toList();
 
     Widget activeScreen = CategoriesScreen(
-      toggleFavorite: _toggleFavoriteMealStatus,
       avaialbleMeals: availableMeals,
     );
     var activeScreenTitle = "Categories";
     if (selectedIndex == 1) {
+      final favMeals = ref.watch(favoriteMealsProvider);
       activeScreen = MealsScreen(
-        meals: favMealsList,
-        toggleFavorite: _toggleFavoriteMealStatus,
+        meals: favMeals,
       );
       activeScreenTitle = "Favorites";
     }

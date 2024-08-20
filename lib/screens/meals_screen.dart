@@ -8,12 +8,12 @@ class MealsScreen extends StatelessWidget {
     super.key,
     this.title,
     required this.meals,
-    required this.toggleFavorite,
+
   });
 
   final String? title;
   final List<MealModel> meals;
-  final void Function(MealModel meal) toggleFavorite;
+
 
   void _selectMeal(BuildContext context, MealModel meal) {
     Navigator.of(context).push(
@@ -21,7 +21,7 @@ class MealsScreen extends StatelessWidget {
         builder: (context) {
           return MealDetailsScreen(
             meal: meal,
-            toggleFavorite: toggleFavorite,
+
           );
         },
       ),
