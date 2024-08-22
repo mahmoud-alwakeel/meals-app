@@ -8,12 +8,10 @@ class MealsScreen extends StatelessWidget {
     super.key,
     this.title,
     required this.meals,
-
   });
 
   final String? title;
   final List<MealModel> meals;
-
 
   void _selectMeal(BuildContext context, MealModel meal) {
     Navigator.of(context).push(
@@ -21,7 +19,6 @@ class MealsScreen extends StatelessWidget {
         builder: (context) {
           return MealDetailsScreen(
             meal: meal,
-
           );
         },
       ),
@@ -70,11 +67,12 @@ class MealsScreen extends StatelessWidget {
     if (title == null) {
       return body;
     }
-    
+
     return Scaffold(
-        appBar: AppBar(
-          title: Text(title!),
-        ),
-        body: body);
+      appBar: AppBar(
+        title: Text(title!),
+      ),
+      body: body,
+    );
   }
 }

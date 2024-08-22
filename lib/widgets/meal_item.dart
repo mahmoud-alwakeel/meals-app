@@ -23,18 +23,6 @@ class MealItem extends StatelessWidget {
         meal.affordability.name.substring(1);
   }
 
-  // void _selectMeal(BuildContext context) {
-  //   Navigator.of(context).push(
-  //     MaterialPageRoute(
-  //       builder: (context) {
-  //         return MealDetailsScreen(
-  //           meal: meal,
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -52,14 +40,17 @@ class MealItem extends StatelessWidget {
         },
         child: Stack(
           children: [
-            FadeInImage(
-              height: 280,
-              width: double.infinity,
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(
-                meal.imageUrl,
+            Hero(
+              tag: meal.id,
+              child: FadeInImage(
+                height: 280,
+                width: double.infinity,
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(
+                  meal.imageUrl,
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
             Positioned(
               bottom: 0,

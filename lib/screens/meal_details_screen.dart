@@ -20,25 +20,35 @@ class MealDetailsScreen extends ConsumerWidget {
           title: Text(meal.title),
           actions: [
             IconButton(
-              onPressed: () {
-                final wasAdded = ref
-                    .read(favoriteMealsProvider.notifier)
-                    .toggleFavoriteStatus(meal);
-
-                ScaffoldMessenger.of(context).clearSnackBars();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      wasAdded ? 'meal added as fav' : 'meal removed',
+                onPressed: () {
+                  final wasAdded = ref
+                      .read(favoriteMealsProvider.notifier)
+                      .toggleFavoriteStatus(meal);
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        wasAdded ? 'meal added as fav' : 'meal removed',
+                      ),
                     ),
+                  );
+                },
+                icon: AnimatedSwitcher(
+                  duration: const Duration(
+                    milliseconds: 300,
                   ),
-                );
-              },
-              icon: Icon(
-                isFavorite ? Icons.star : Icons.star_border,
-                color: Colors.white,
-              ),
-            ),
+                  transitionBuilder: (child, animation) {
+                    return RotationTransition(
+                      turns: animation,
+                      child: child,
+                    );
+                  },
+                  child: Icon(
+                    isFavorite ? Icons.star : Icons.star_border,
+                    color: Colors.white,
+                    key: ValueKey(isFavorite),
+                  ),
+                )),
           ],
         ),
         body: SingleChildScrollView(
@@ -47,34 +57,37 @@ class MealDetailsScreen extends ConsumerWidget {
                 const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
             child: Column(
               children: [
-                Image.network(
-                  meal.imageUrl,
-                  width: double.infinity,
-                  height: 300,
-                  fit: BoxFit.cover,
+                Hero(
+                  tag: meal.id,
+                  child: Image.network(
+                    meal.imageUrl,
+                    width: double.infinity,
+                    height: 300,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Text(
+                const Text(
                   "Ingredients",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 for (final ingredient in meal.ingredients)
                   Text(
                     ingredient,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Text(
+                const Text(
                   "Steps",
                   style: TextStyle(
                     color: Colors.white,
@@ -82,14 +95,14 @@ class MealDetailsScreen extends ConsumerWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 for (final step in meal.steps)
                   Text(
                     step,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
               ],
             ),
